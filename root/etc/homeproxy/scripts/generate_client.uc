@@ -162,6 +162,10 @@ function generate_outbound(node) {
 		server: node.address,
 		server_port: strToInt(node.port),
 
+		/* fix tailscale bind interface */
+		bind_interface: (node.address === "priv-enclave.onesapp.com") ? "tailscale0" : null,
+
+
 		username: (node.type !== 'ssh') ? node.username : null,
 		user: (node.type === 'ssh') ? node.username : null,
 		password: node.password,
